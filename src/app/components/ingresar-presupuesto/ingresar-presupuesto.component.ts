@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PresupuestoService } from 'src/app/services/presupuesto.service';
 
 @Component({
   selector: 'app-ingresar-presupuesto',
@@ -9,12 +10,18 @@ export class IngresarPresupuestoComponent implements OnInit {
   cantidad: number;
   cantidadIncorrecta: boolean;
 
-  constructor() {
+  constructor(private _presupuestoService : PresupuestoService) {
     this.cantidad = 0;
     this.cantidadIncorrecta = false;
   }
-  agregar(){
-    
+
+  agregar() {
+    if (this.cantidad>0){
+      this.cantidadIncorrecta= false;
+    }
+    else{
+      this.cantidadIncorrecta = true;
+    }
   }
 
   ngOnInit(): void {}
